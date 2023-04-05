@@ -1,0 +1,115 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+#dashboard {
+  min-height: 100%;
+  background-color: #232c39;
+  display: flex;
+  justify-content: top;
+  align-items: top;
+  flex-direction: column;
+}
+
+#header {
+  color: #ffffff; /* This sets the header text color to white */
+  font-size: 3.8rem; /* Adjust the font size as needed */
+  font-family: 'Bebas Neue'; /* Add this line */
+  text-align: center;
+  margin: 0;
+}
+
+/* Shared styles for all chart containers */
+.chart-container {
+  width: 50%; /* Adjust this value to change the chart size */
+  margin: 1rem auto; /* Add this line to center the chart and give it some margin */
+}
+
+.chart-container2 {
+  width: 50%; /* Adjust this value to change the chart size */
+  margin: 15rem auto; /* Add this line to center the chart and give it some margin */
+}
+
+#content {
+  display: flex;
+}
+
+#filters {
+  width: 25%; /* Adjust this value to change the filters width */
+  padding: 1rem;
+  /* Add more styles for the filters container if needed */
+}
+
+#charts {
+  width: 100%; /* Adjust this value to change the charts container width */
+  display: flex;
+  flex-direction: column; /* Add this line to stack charts vertically */
+  align-items: flex-start; /* Change this line to move charts more to the left */
+  padding: 8rem 8rem 8rem 25rem; /* Top Right Bottom Left padding values */
+  gap: 5rem; /* Add this line to add some space between charts */
+}
+
+.chart-container {
+  width: 50%; /* Adjust this value to change the chart size */
+  margin: 1rem; /* Adjust this value to control the spacing around the chart container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Add this line */
+}
+
+
+
+.chart-title {
+  color: #ffffff; /* Adjust the title text color */
+  font-size: 1.8rem; /* Adjust the font size */
+  font-family: 'Bebas Neue'; /* Update the font-family */
+  font-weight: 700; /* Add this line to use the bold font weight */
+  text-align: center;
+  position: absolute; /* Add this line */
+  top: -3rem; /* Add this line */
+  left: 9rem; /* Add this line to move the chart titles to the left */
+}
+
+#data-table-container {
+  width: 100%;
+  overflow-x: auto;
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+}
+
+#data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+#data-table th,
+#data-table td {
+  border: 1px solid #cccccc;
+  padding: 8px;
+  text-align: left;
+  color: #ffffff; /* Add this line to change the color of the data inside the rows */
+}
+
+/* Add this new selector */
+.table-title {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-family: 'Bebas Neue';
+  font-weight: 700;
+  text-align: center;
+  margin-top: 2rem; /* Add some margin to position the title above the table */
+}
+
+#data-table th {
+  background-color: #333333;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#data-table th[data-sortable]:hover {
+  background-color: #555555;
+}
+
