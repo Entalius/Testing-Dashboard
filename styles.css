@@ -93,15 +93,17 @@ body, html {
   color: #ffffff; /* Add this line to change the color of the data inside the rows */
 }
 
-/* Add this new selector */
 .table-title {
   color: #ffffff;
   font-size: 1.8rem;
   font-family: 'Bebas Neue';
   font-weight: 700;
   text-align: center;
-  margin-top: 2rem; /* Add some margin to position the title above the table */
+  margin-top: 2rem;
+  margin-bottom: 1rem; /* Add this line to give some space between the title and the table */
+  width: 100%; /* Add this line to make the title take full width */
 }
+
 
 #data-table th {
   background-color: #333333;

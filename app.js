@@ -86,7 +86,7 @@ let lastSortDirection = true;
 
 // Function to handle column click for sorting
 function onColumnClick(event) {
-  const column = event.target.textContent;
+  const column = event.target.innerText.trim(); // Change this line
   const ascending = column === lastSortedColumn ? !lastSortDirection : true;
   const sortedData = sortData(sampleData, column.toLowerCase(), ascending);
   renderTableData(sortedData);
