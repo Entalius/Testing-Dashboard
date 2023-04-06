@@ -1,21 +1,3 @@
-function showMSISDNOverview() {
-  document.getElementById('msisdn-overview').style.display = 'block';
-  document.getElementById('filter-menu').style.display = 'block';
-}
-
-function hideMSISDNOverview() {
-  document.getElementById('msisdn-overview').style.display = 'none';
-  document.getElementById('filter-menu').style.display = 'none';
-}
-function handleClick(buttonName) {
-  if (buttonName === 'msisdn-overview') {
-    showMSISDNOverview();
-  } else {
-    hideMSISDNOverview();
-  }
-}
-
-
 function filterChartData(statuses, categories) {
   // This is just an example, you can replace it with your actual data fetching and filtering logic
   const filteredData = [10, 15, 25]; // Assume these are the filtered values
@@ -87,10 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ["#0066ff", "#ff0000", "#009933"]
   );
 
-  const msisdnChartData = pieChart.data.datasets[0].data.slice(); // Save the initial data
-const msisdnChartLabels = pieChart.data.labels.slice(); // Save the initial labels
-const simCardChartData = pieChart2.data.datasets[0].data.slice(); // Save the initial data
-const simCardChartLabels = pieChart2.data.labels.slice(); // Save the initial labels
 
 // Sample data for the table
 const sampleData = [
@@ -114,13 +92,10 @@ function renderTableData(data) {
     });
     tableBody.appendChild(tr);
   });
-
-  document.getElementById('category').addEventListener('change', function (event) {
-    // Apply the filter based on the selected category
-    var selectedCategory = event.target.value;
-    console.log('Selected category:', selectedCategory);
-  });
-
+  const msisdnChartData = pieChart.data.datasets[0].data.slice(); // Save the initial data
+  const msisdnChartLabels = pieChart.data.labels.slice(); // Save the initial labels
+  const simCardChartData = pieChart2.data.datasets[0].data.slice(); // Save the initial data
+  const simCardChartLabels = pieChart2.data.labels.slice(); // Save the initial labels
 }
 
 // Function to sort data
@@ -174,9 +149,8 @@ dashboardLink.addEventListener("click", (e) => {
   msisdnChart.style.display = "block";
   simCardChart.style.display = "block";
   dataTableContainer.style.display = "block";
-  msisdnFilterMenu.style.display = "none"; // Hide the filter menu
-  pieChart = updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
-  pieChart2 = updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
+  
+
 
 });
 
@@ -184,11 +158,9 @@ msisdnOverviewLink.addEventListener("click", (e) => {
   e.preventDefault();
   msisdnChart.style.display = "block";
   simCardChart.style.display = "none";
-  pieChart = updateAndRenderChart(pieChart, msisdnChartData.slice(), msisdnChartLabels.slice());
   
   dataTableContainer.style.display = "none";
 
-  msisdnFilterMenu.style.display = "block"; // Show the filter menu
 });
 
 
@@ -197,7 +169,6 @@ simCardOverviewLink.addEventListener("click", (e) => {
   msisdnChart.style.display = "none";
   simCardChart.style.display = "block";
   dataTableContainer.style.display = "none";
-  pieChart2 = updateAndRenderChart(pieChart2, simCardChartData.slice(), simCardChartLabels.slice());
 });
 
 
@@ -217,21 +188,4 @@ const applyFilterButton = document.getElementById("apply-filter");
 const resetFilterButton = document.getElementById("reset-filter");
 
 // ... (app.js code)
-
-applyFilterButton.addEventListener("click", () => {
-  const selectedStatuses = Array.from(statusFilter.selectedOptions).map((option) => option.value);
-  const selectedCategories = Array.from(categoryFilter.selectedOptions).map((option) => option.value);
-
-  filterChartData(selectedStatuses, selectedCategories);
-});
-
-resetFilterButton.addEventListener("click", () => {
-  // Reset the filter selections
-  statusFilter.selectedIndex = -1;
-  categoryFilter.selectedIndex = -1;
-
-  // Restore the original chart data
-  updateAndRenderChart(pieChart, msisdnChartData.slice(), msisdnChartLabels.slice());
-});
-
 
