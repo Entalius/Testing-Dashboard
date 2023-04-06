@@ -23,26 +23,27 @@ function createPieChart(chartId, labels, data, backgroundColors) {
     ],
   };
 
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      position: 'right',
-      labels: {
-        padding: 10,
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right',
+        labels: {
+          padding: 10,
+        },
       },
     },
-  },
-  layout: {
-    padding: {
-      left: 0, // Adjust this value to change the left padding
-      right: 350, // Adjust this value to change the right padding
-      top: 0,
-      bottom: 0
+    layout: {
+      padding: {
+        left: 0,
+        right: 0, // Change this value to 0
+        top: 0,
+        bottom: 0
+      }
     }
-  }
-};
+  };
+  
         
  
   const pieChart = new Chart(ctx, {
@@ -54,23 +55,24 @@ const options = {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const pieChart = createPieChart(
+  let pieChart = createPieChart(
     "pieChart",
     ["Category 1", "Category 2", "Category 3"],
     [30, 20, 50],
     ["#3333ff", "#ff9900", "#009900"]
   );
 
-  const pieChart2 = createPieChart(
+  let pieChart2 = createPieChart(
     "pieChart2",
     ["Category A", "Category B", "Category C"],
     [40, 30, 30],
     ["#0066ff", "#ff0000", "#009933"]
   );
+
   const msisdnChartData = pieChart.data.datasets[0].data.slice(); // Save the initial data
-  const msisdnChartLabels = pieChart.data.labels.slice(); // Save the initial labels
-  const simCardChartData = pieChart2.data.datasets[0].data.slice(); // Save the initial data
-  const simCardChartLabels = pieChart2.data.labels.slice(); // Save the initial labels
+const msisdnChartLabels = pieChart.data.labels.slice(); // Save the initial labels
+const simCardChartData = pieChart2.data.datasets[0].data.slice(); // Save the initial data
+const simCardChartLabels = pieChart2.data.labels.slice(); // Save the initial labels
 
 // Sample data for the table
 const sampleData = [
@@ -94,6 +96,7 @@ function renderTableData(data) {
     });
     tableBody.appendChild(tr);
   });
+
 }
 
 // Function to sort data
@@ -147,9 +150,9 @@ dashboardLink.addEventListener("click", (e) => {
   msisdnChart.style.display = "block";
   simCardChart.style.display = "block";
   dataTableContainer.style.display = "block";
-  updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
-  updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
   msisdnFilterMenu.style.display = "none"; // Hide the filter menu
+  pieChart = updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
+  pieChart2 = updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
 
 });
 
@@ -157,14 +160,10 @@ msisdnOverviewLink.addEventListener("click", (e) => {
   e.preventDefault();
   msisdnChart.style.display = "block";
   simCardChart.style.display = "none";
+  pieChart = updateAndRenderChart(pieChart, msisdnChartData.slice(), msisdnChartLabels.slice());
   
   dataTableContainer.style.display = "none";
-  pieChart = updateAndRenderChart(
-    "pieChart",
-    pieChart,
-    msisdnChartData.slice(), // Clone the data
-    msisdnChartLabels.slice() // Clone the labels
-  );
+
   msisdnFilterMenu.style.display = "block"; // Show the filter menu
 });
 
@@ -174,12 +173,7 @@ simCardOverviewLink.addEventListener("click", (e) => {
   msisdnChart.style.display = "none";
   simCardChart.style.display = "block";
   dataTableContainer.style.display = "none";
-  pieChart2 = updateAndRenderChart(
-    "pieChart2",
-    pieChart2,
-    simCardChartData.slice(), // Clone the data
-    simCardChartLabels.slice() // Clone the labels
-  );
+  pieChart2 = updateAndRenderChart(pieChart2, simCardChartData.slice(), simCardChartLabels.slice());
 });
 
 
@@ -215,3 +209,5 @@ resetFilterButton.addEventListener("click", () => {
   // Restore the original chart data
   updateAndRenderChart(pieChart, msisdnChartData.slice(), msisdnChartLabels.slice());
 });
+
+

@@ -25,9 +25,12 @@ body {
 
 /* Shared styles for all chart containers */
 .chart-container {
-  width: 50%; /* Adjust this value to change the chart size */
-  margin: 1rem auto; /* Add this line to center the chart and give it some margin */
+  height: 400px; /* Add this line to set a height */
+  margin-bottom: 20px;
+  position: relative;
 }
+
+
 
 .chart-container2 {
   width: 50%; /* Adjust this value to change the chart size */
