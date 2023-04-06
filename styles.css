@@ -1,8 +1,11 @@
 body, html {
   height: 100%;
   margin: 0;
+  
 }
-
+body {
+  overflow-x: hidden;
+}
 #dashboard {
   min-height: 100%;
   background-color: #232c39;
@@ -46,7 +49,7 @@ body, html {
   display: flex;
   flex-direction: column; /* Add this line to stack charts vertically */
   align-items: flex-start; /* Change this line to move charts more to the left */
-  padding: 8rem 0rem 8rem 40rem; /* Top Right Bottom Left padding values */
+  padding: 8rem 8rem 8rem 40rem; /* Top Right Bottom Left padding values (Increase the left padding value) */
   gap: 5rem; /* Add this line to add some space between charts */
 }
 
@@ -69,7 +72,7 @@ body, html {
   text-align: center;
   position: absolute; /* Add this line */
   top: -3rem; /* Add this line */
-  left: 11rem; /* Add this line to move the chart titles to the left */
+  left: 11rem; /* Increase this value to move titles more to the right */
 }
 
 #data-table-container {
@@ -93,14 +96,14 @@ body, html {
   color: #ffffff; /* Add this line to change the color of the data inside the rows */
 }
 
-/* Add this new selector */
 #table-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-left: -20rem; /* Add this line to move the table more to the left */
+
 }
+
 
 .table-title {
   color: #ffffff;
@@ -110,7 +113,7 @@ body, html {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem; /* Add this line to give some space between the title and the table */
-  margin-left: 11rem; /* Add this line to move the table more to the left */
+  margin-left: -11rem; /* Add this line to move the table more to the left */
 }
 
 
