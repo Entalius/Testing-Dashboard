@@ -29,29 +29,25 @@
 <div class="chart-container" id="msisdn-chart">
     <div class="chart-title">MSISDN POOL</div>
     <canvas id="pieChart"></canvas>
-    <div class="filter-menu" id="msisdn-filter-menu"> <!-- Add this div for the filter menu -->
-      <h3>Filter by</h3>
-      <div>
-        <label>Status</label>
-        <select id="status-filter" multiple>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-          <option value="Suspended">Suspended</option>
-        </select>
-      </div>
-      <div>
-        <label>Category</label>
-        <select id="category-filter" multiple>
-          <option value="Category 1">Category 1</option>
-          <option value="Category 2">Category 2</option>
-          <option value="Category 3">Category 3</option>
-        </select>
-      </div>
-      <button id="apply-filter">Apply Filter</button>
-      <button id="reset-filter">Reset Filter</button>
-    </div>
+   <!-- Add this div for the filter menu -->
+<div id="filter-menu" style="display:none;">
+    <!-- Add filter options here -->
+    <label for="category">Category:</label>
+    <select id="category">
+      <option value="">Select Category</option>
+      <option value="cat1">Category 1</option>
+      <option value="cat2">Category 2</option>
+    </select>
+    <br />
+    <label for="status">Status:</label>
+    <select id="status">
+      <option value="">Select Status</option>
+      <option value="status1">Status 1</option>
+      <option value="status2">Status 2</option>
+    </select>
+    <br />
+    <button id="reset-filters">Reset Filters</button>
   </div>
-  <!-- ... -->
   
             </div>
             <div class="chart-container" id="sim-card-chart">

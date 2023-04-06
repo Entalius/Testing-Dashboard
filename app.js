@@ -1,3 +1,21 @@
+function showMSISDNOverview() {
+  document.getElementById('msisdn-overview').style.display = 'block';
+  document.getElementById('filter-menu').style.display = 'block';
+}
+
+function hideMSISDNOverview() {
+  document.getElementById('msisdn-overview').style.display = 'none';
+  document.getElementById('filter-menu').style.display = 'none';
+}
+function handleClick(buttonName) {
+  if (buttonName === 'msisdn-overview') {
+    showMSISDNOverview();
+  } else {
+    hideMSISDNOverview();
+  }
+}
+
+
 function filterChartData(statuses, categories) {
   // This is just an example, you can replace it with your actual data fetching and filtering logic
   const filteredData = [10, 15, 25]; // Assume these are the filtered values
@@ -95,6 +113,12 @@ function renderTableData(data) {
       tr.appendChild(td);
     });
     tableBody.appendChild(tr);
+  });
+
+  document.getElementById('category').addEventListener('change', function (event) {
+    // Apply the filter based on the selected category
+    var selectedCategory = event.target.value;
+    console.log('Selected category:', selectedCategory);
   });
 
 }
