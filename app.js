@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Sample data for the table
 const sampleData = [
-  { col1: 'A', col2: 2, col3: '2022-04-01' },
-  { col1: 'B', col2: 1, col3: '2022-04-02' },
-  { col1: 'C', col2: 3, col3: '2022-04-03' },
+  { 'Column 1': 'A', 'Column 2': 2, 'Column 3': '2022-04-01' },
+  { 'Column 1': 'B', 'Column 2': 1, 'Column 3': '2022-04-02' },
+  { 'Column 1': 'C', 'Column 2': 3, 'Column 3': '2022-04-03' },
   // Add more rows as needed
 ];
 
@@ -86,13 +86,14 @@ let lastSortDirection = true;
 
 // Function to handle column click for sorting
 function onColumnClick(event) {
-  const column = event.target.innerText.trim(); // Change this line
+  const column = event.target.innerText.trim();
   const ascending = column === lastSortedColumn ? !lastSortDirection : true;
-  const sortedData = sortData(sampleData, column.toLowerCase(), ascending);
+  const sortedData = sortData(sampleData, column, ascending);
   renderTableData(sortedData);
   lastSortedColumn = column;
   lastSortDirection = ascending;
 }
+
 
 // Initialize table and sortable functionality
 function initTable() {

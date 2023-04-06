@@ -93,6 +93,14 @@ body, html {
   color: #ffffff; /* Add this line to change the color of the data inside the rows */
 }
 
+/* Add this new selector */
+#table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .table-title {
   color: #ffffff;
   font-size: 1.8rem;
@@ -101,7 +109,6 @@ body, html {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem; /* Add this line to give some space between the title and the table */
-  width: 100%; /* Add this line to make the title take full width */
 }
 
 
