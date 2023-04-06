@@ -1,3 +1,10 @@
+// Add this function at the beginning of your app.js file
+function updateAndRenderChart(chart, data, labels) {
+  chart.data.labels = labels;
+  chart.data.datasets[0].data = data;
+  chart.update();
+}
+
 function createPieChart(chartId, labels, data, backgroundColors) {
   const ctx = document.getElementById(chartId).getContext('2d');
   const chartData = {
@@ -37,23 +44,27 @@ const options = {
     data: chartData,
     options: options,
   });
+  return pieChart; // Add this line to return the created chart
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  createPieChart(
-    'pieChart',
-    ['Category 1', 'Category 2', 'Category 3'],
+document.addEventListener("DOMContentLoaded", function () {
+  const pieChart = createPieChart(
+    "pieChart",
+    ["Category 1", "Category 2", "Category 3"],
     [30, 20, 50],
-    ['#3333ff', '#ff9900', '#009900']
+    ["#3333ff", "#ff9900", "#009900"]
   );
 
-  createPieChart(
-    'pieChart2',
-    ['Category A', 'Category B', 'Category C'],
+  const pieChart2 = createPieChart(
+    "pieChart2",
+    ["Category A", "Category B", "Category C"],
     [40, 30, 30],
-    ['#0066ff', '#ff0000', '#009933']
+    ["#0066ff", "#ff0000", "#009933"]
   );
-});
+  const msisdnChartData = pieChart.data.datasets[0].data.slice(); // Save the initial data
+  const msisdnChartLabels = pieChart.data.labels.slice(); // Save the initial labels
+  const simCardChartData = pieChart2.data.datasets[0].data.slice(); // Save the initial data
+  const simCardChartLabels = pieChart2.data.labels.slice(); // Save the initial labels
 
 // Sample data for the table
 const sampleData = [
@@ -113,3 +124,47 @@ function initTable() {
 }
 
 initTable();
+
+// Add this code at the end of your app.js file
+
+const dashboardLink = document.querySelector("nav ul li:nth-child(1) a");
+const msisdnOverviewLink = document.querySelector("nav ul li:nth-child(2) a");
+const simCardOverviewLink = document.querySelector("nav ul li:nth-child(3) a");
+const schedulerOverviewLink = document.querySelector("nav ul li:nth-child(4) a");
+
+const msisdnChart = document.getElementById("msisdn-chart");
+const simCardChart = document.getElementById("sim-card-chart");
+const dataTableContainer = document.getElementById("data-table-container");
+
+dashboardLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
+  updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
+  msisdnChart.style.display = "block";
+  simCardChart.style.display = "block";
+  dataTableContainer.style.display = "block";
+});
+
+msisdnOverviewLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
+  msisdnChart.style.display = "block";
+  simCardChart.style.display = "none";
+  dataTableContainer.style.display = "none";
+});
+
+simCardOverviewLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
+  msisdnChart.style.display = "none";
+  simCardChart.style.display = "block";
+  dataTableContainer.style.display = "none";
+});
+
+schedulerOverviewLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  msisdnChart.style.display = "none";
+  simCardChart.style.display = "none";
+  dataTableContainer.style.display = "block";
+});
+});
