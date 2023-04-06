@@ -1,10 +1,16 @@
-// Add this function at the beginning of your app.js file
-function updateAndRenderChart(chart, data, labels) {
-  chart.data.labels = labels;
-  chart.data.datasets[0].data = data;
-  chart.update();
+function filterChartData(statuses, categories) {
+  // This is just an example, you can replace it with your actual data fetching and filtering logic
+  const filteredData = [10, 15, 25]; // Assume these are the filtered values
+
+  // Update the chart with the filtered data
+  updateAndRenderChart(pieChart, filteredData, msisdnChartLabels.slice());
 }
 
+function updateAndRenderChart(chartId, chart, data, labels) {
+  chart.destroy(); // Destroy the old chart
+  // Create a new chart with the updated data and labels
+  return createPieChart(chartId, labels, data, chart.data.datasets[0].backgroundColor);
+}
 function createPieChart(chartId, labels, data, backgroundColors) {
   const ctx = document.getElementById(chartId).getContext('2d');
   const chartData = {
@@ -138,28 +144,44 @@ const dataTableContainer = document.getElementById("data-table-container");
 
 dashboardLink.addEventListener("click", (e) => {
   e.preventDefault();
-  updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
-  updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
   msisdnChart.style.display = "block";
   simCardChart.style.display = "block";
   dataTableContainer.style.display = "block";
+  updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
+  updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
+  msisdnFilterMenu.style.display = "none"; // Hide the filter menu
+
 });
 
 msisdnOverviewLink.addEventListener("click", (e) => {
   e.preventDefault();
-  updateAndRenderChart(pieChart, msisdnChartData, msisdnChartLabels);
   msisdnChart.style.display = "block";
   simCardChart.style.display = "none";
+  
   dataTableContainer.style.display = "none";
+  pieChart = updateAndRenderChart(
+    "pieChart",
+    pieChart,
+    msisdnChartData.slice(), // Clone the data
+    msisdnChartLabels.slice() // Clone the labels
+  );
+  msisdnFilterMenu.style.display = "block"; // Show the filter menu
 });
+
 
 simCardOverviewLink.addEventListener("click", (e) => {
   e.preventDefault();
-  updateAndRenderChart(pieChart2, simCardChartData, simCardChartLabels);
   msisdnChart.style.display = "none";
   simCardChart.style.display = "block";
   dataTableContainer.style.display = "none";
+  pieChart2 = updateAndRenderChart(
+    "pieChart2",
+    pieChart2,
+    simCardChartData.slice(), // Clone the data
+    simCardChartLabels.slice() // Clone the labels
+  );
 });
+
 
 schedulerOverviewLink.addEventListener("click", (e) => {
   e.preventDefault();
@@ -167,4 +189,29 @@ schedulerOverviewLink.addEventListener("click", (e) => {
   simCardChart.style.display = "none";
   dataTableContainer.style.display = "block";
 });
+
+});
+
+const msisdnFilterMenu = document.getElementById("msisdn-filter-menu");
+const statusFilter = document.getElementById("status-filter");
+const categoryFilter = document.getElementById("category-filter");
+const applyFilterButton = document.getElementById("apply-filter");
+const resetFilterButton = document.getElementById("reset-filter");
+
+// ... (app.js code)
+
+applyFilterButton.addEventListener("click", () => {
+  const selectedStatuses = Array.from(statusFilter.selectedOptions).map((option) => option.value);
+  const selectedCategories = Array.from(categoryFilter.selectedOptions).map((option) => option.value);
+
+  filterChartData(selectedStatuses, selectedCategories);
+});
+
+resetFilterButton.addEventListener("click", () => {
+  // Reset the filter selections
+  statusFilter.selectedIndex = -1;
+  categoryFilter.selectedIndex = -1;
+
+  // Restore the original chart data
+  updateAndRenderChart(pieChart, msisdnChartData.slice(), msisdnChartLabels.slice());
 });
