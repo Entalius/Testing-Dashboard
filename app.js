@@ -10,19 +10,26 @@ function createPieChart(chartId, labels, data, backgroundColors) {
     ],
   };
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'right', // This will move the legend to the left side of the chart
-        labels: {
-          padding: 20, // Adjust this value to change the padding between the legend and the chart
-        },
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'right',
+      labels: {
+        padding: 10,
       },
     },
-  };
-        
+  },
+  layout: {
+    padding: {
+      left: 0, // Adjust this value to change the left padding
+      right: 350, // Adjust this value to change the right padding
+      top: 0,
+      bottom: 0
+    }
+  }
+};
         
  
   const pieChart = new Chart(ctx, {
