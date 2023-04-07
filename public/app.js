@@ -1,4 +1,5 @@
-// Add this function to fetch data and create the pie chart
+let simCardPieChartInstance = null;
+
 async function createSimCardPieChart(statusFilter = 'all', categoryFilter = 'all') {
   try {
     const response = await fetch('/api/sim-card-data');
@@ -48,8 +49,12 @@ async function createSimCardPieChart(statusFilter = 'all', categoryFilter = 'all
         },
       },
     };
-    
-    new Chart(ctx, {
+
+    if (simCardPieChartInstance) {
+      simCardPieChartInstance.destroy();
+    }
+
+    simCardPieChartInstance = new Chart(ctx, {
       type: 'pie',
       data: dataConfig,
       options: options,
@@ -90,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dataTableContainer.style.display = "block";
     document.getElementById('filter-container').style.display = 'none'; // Add this line
   });
-
+  
   msisdnOverviewLink.addEventListener("click", (e) => {
     e.preventDefault();
     msisdnChart.style.display = "block";
@@ -98,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dataTableContainer.style.display = "none";
     document.getElementById('filter-container').style.display = 'none'; // Add this line
   });
-
+  
   simCardOverviewLink.addEventListener('click', async function (e) {
     e.preventDefault();
     msisdnChart.style.display = 'none';
@@ -106,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dataTableContainer.style.display = 'none';
     document.getElementById('filter-container').style.display = 'block';// Add this line
     document.getElementById('filter-container').style.display = 'block'; // Update this line
-    await createSimCardPieChart(); // Add this line
+    
   });
   schedulerOverviewLink.addEventListener("click", (e) => {
     e.preventDefault();
@@ -115,5 +120,5 @@ document.addEventListener("DOMContentLoaded", function () {
     dataTableContainer.style.display = "block";
     document.getElementById('filter-container').style.display = 'none'; // Add this line
   });
-});
-
+  });
+  

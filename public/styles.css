@@ -50,7 +50,7 @@ body {
   display: flex;
   flex-direction: column; /* Add this line to stack charts vertically */
   align-items: flex-start; /* Change this line to move charts more to the left */
-  padding: 8rem 8rem 8rem 40rem; /* Top Right Bottom Left padding values (Increase the left padding value) */
+  padding: 0.01rem 8rem 8rem 40rem; /* Top Right Bottom Left padding values (Increase the left padding value) */
   gap: 5rem; /* Add this line to add some space between charts */
 }
 
