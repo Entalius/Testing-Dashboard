@@ -103,4 +103,16 @@
     color: #00A6FB;
   }
   
+  .graph-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
   
+  #free-assigned-voice-chart {
+    width: 250px !important;
+    height: 250px !important;
+  }

@@ -20,7 +20,7 @@
   
 
       
-    
+      createTotalMsisdnChart(totalMsisdn);
       createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
   
       // Add animateValue() function calls here
@@ -79,43 +79,19 @@
     });
   }
   
-  
   function createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice) {
-    const ctx = document.getElementById('free-assigned-voice-chart').getContext('2d');
+    const chartData = [
+      { label: 'Free Voice', value: totalFreeVoice },
+      { label: 'Assigned Voice', value: totalAssignedVoice },
+    ];
   
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Free Voice', 'Assigned Voice'],
-        datasets: [
-          {
-            data: [totalFreeVoice, totalAssignedVoice],
-            backgroundColor: ['#76DDFB', '#00A6FB'],
-            borderWidth: 5,
-            borderColor: '#ffffff',
-          },
-        ],
-      },
-      options: {
-        cutoutPercentage: 80,
-        legend: {
-          display: false,
-        },
-        tooltips: {
-          enabled: true,
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-          titleFontColor: '#000',
-          bodyFontColor: '#000',
-          borderWidth: 1,
-          borderColor: '#000',
-          xPadding: 15,
-          yPadding: 10,
-          displayColors: false,
-          caretSize: 10,
-        },
-        responsive: true,
-        maintainAspectRatio: true,
-        aspectRatio: 1,
+    new Morris.Donut({
+      element: 'free-assigned-voice-chart',
+      data: chartData,
+      colors: ['#76DDFB', '#00A6FB'],
+      resize: true,
+      formatter: function (value, data) {
+        return value.toLocaleString();
       },
     });
   }

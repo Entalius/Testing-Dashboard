@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/main.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
   <title>IT-Billing Total Overview Dashboard</title>
 </head>
 <body>
@@ -27,11 +31,10 @@
         <div class="row">
           <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total MSISDNs</h5>
-                    <p class="card-text total-msisdn quickstat">0</p>
-                  </div>
-                  
+              <div class="card-body">
+                <h5 class="card-title">Total MSISDNs</h5>
+                <p class="card-text total-msisdn">0</p>
+                <canvas id="total-msisdn-chart"></canvas>
 
               </div>
             </div>
@@ -59,7 +62,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Total Free Voice MSISDNs</h5>
                         <p class="card-text total-free-voice">0</p>
-                        <canvas id="free-assigned-voice-chart" width="50" height="50"></canvas>
+                        <div id="free-assigned-voice-chart" style="width: 250px; height: 250px;"></div>
                     </div>
                 </div>
             </div>
