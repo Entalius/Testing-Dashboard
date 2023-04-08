@@ -20,7 +20,7 @@
   
 
       
-      createTotalMsisdnChart(totalMsisdn);
+ 
       createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
   
       // Add animateValue() function calls here
@@ -35,49 +35,7 @@
   })();
   
   
-  function createTotalMsisdnChart(totalMsisdn) {
-    const ctx = document.getElementById('total-msisdn-chart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: [''],
-        datasets: [
-          {
-            data: [totalMsisdn],
-            backgroundColor: '#4e73df',
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-        tooltips: {
-          enabled: false,
-        },
-        onAnimationComplete: function () {
-          const ctx = this.ctx;
-          ctx.font = this.scale.font;
-          ctx.fillStyle = this.scale.textColor;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'bottom';
-  
-          this.datasets.forEach(function (dataset) {
-            dataset.bars.forEach(function (bar) {
-              ctx.fillText(bar.value, bar.x, bar.y - 5);
-            });
-          });
-        },
-      },
-    });
-  }
+ 
   
   function createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice) {
     const chartData = [
