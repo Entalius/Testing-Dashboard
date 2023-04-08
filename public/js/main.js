@@ -20,7 +20,7 @@
   
 
       
-      createTotalMsisdnChart(totalMsisdn);
+    
       createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
   
       // Add animateValue() function calls here
@@ -97,7 +97,7 @@
         ],
       },
       options: {
-        cutoutPercentage: 90,
+        cutoutPercentage: 80,
         legend: {
           display: false,
         },
@@ -119,7 +119,6 @@
       },
     });
   }
-  
   
   
   function animateValue(id, start, end, duration) {
