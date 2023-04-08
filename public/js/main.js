@@ -18,16 +18,17 @@
         }
       });
   
-      const enoughMsisdnText = totalFreeVoice < 5000
-        ? `NO, there are currently ${totalFreeVoice} free numbers. Consider importing more into the pool!`
-        : `YES, there are currently ${totalFreeVoice} free numbers.`;
-  
-      document.querySelector('.enough-msisdn').textContent = enoughMsisdnText;
-      document.querySelector('.total-msisdn').textContent = totalMsisdn;
-      document.querySelector('.total-free-voice').textContent = totalFreeVoice;
-  
+
+      
       createTotalMsisdnChart(totalMsisdn);
       createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
+  
+      // Add animateValue() function calls here
+      document.querySelector('.total-msisdn').textContent = totalMsisdn;
+      
+      document.querySelector('.total-free-voice').textContent = totalFreeVoice;
+
+  
     } catch (error) {
       console.error('Error fetching MSISDN data:', error);
     }
@@ -80,7 +81,8 @@
   
   
   function createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice) {
-    const ctx = document.getElementById('freeAssignedVoiceChart').getContext('2d');
+    const ctx = document.getElementById('free-assigned-voice-chart').getContext('2d');
+  
     new Chart(ctx, {
       type: 'doughnut',
       data: {
@@ -88,12 +90,36 @@
         datasets: [
           {
             data: [totalFreeVoice, totalAssignedVoice],
-            backgroundColor: ['#FF6384', '#36A2EB'],
+            backgroundColor: ['#76DDFB', '#00A6FB'],
+            borderWidth: 5,
+            borderColor: '#ffffff',
           },
         ],
       },
+      options: {
+        cutoutPercentage: 90,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          enabled: true,
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          titleFontColor: '#000',
+          bodyFontColor: '#000',
+          borderWidth: 1,
+          borderColor: '#000',
+          xPadding: 15,
+          yPadding: 10,
+          displayColors: false,
+          caretSize: 10,
+        },
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1,
+      },
     });
   }
+  
   
   
   function animateValue(id, start, end, duration) {
@@ -117,12 +143,7 @@
     }, timer);
   }
   
-  /* Replace the textContent assignments with animateValue() calls */
-  document.querySelector('.total-msisdn').textContent = 0;
-  animateValue('.total-msisdn', 0, totalMsisdn, 2000);
-  
-  document.querySelector('.total-free-voice').textContent = 0;
-  animateValue('.total-free-voice', 0, totalFreeVoice, 2000);
+
 
   function createMsisdnStatusChart(data) {
     const labels = data.map(row => row.Status);
