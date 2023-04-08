@@ -35,34 +35,49 @@
   
   
   function createTotalMsisdnChart(totalMsisdn) {
-    const ctx = document.getElementById('totalMsisdnChart').getContext('2d');
+    const ctx = document.getElementById('total-msisdn-chart').getContext('2d');
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Total MSISDN'],
+        labels: [''],
         datasets: [
           {
             data: [totalMsisdn],
-            backgroundColor: ['#36A2EB'],
+            backgroundColor: '#4e73df',
           },
         ],
       },
       options: {
-        legend: {
-          display: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
         },
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+          y: {
+            beginAtZero: true,
+          },
+        },
+        tooltips: {
+          enabled: false,
+        },
+        onAnimationComplete: function () {
+          const ctx = this.ctx;
+          ctx.font = this.scale.font;
+          ctx.fillStyle = this.scale.textColor;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+  
+          this.datasets.forEach(function (dataset) {
+            dataset.bars.forEach(function (bar) {
+              ctx.fillText(bar.value, bar.x, bar.y - 5);
+            });
+          });
         },
       },
     });
   }
+  
   
   function createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice) {
     const ctx = document.getElementById('freeAssignedVoiceChart').getContext('2d');

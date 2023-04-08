@@ -66,13 +66,9 @@
   
   /* Added styles for cards */
   .card {
-    background-color: #1f2630;
-    color: #fff;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    background-color: transparent;
   }
-  
   .card-title {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -100,3 +96,14 @@
     font-weight: bold;
     color: #fff;
   }
+
+  .enough-msisdn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    border-radius: 5px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  
