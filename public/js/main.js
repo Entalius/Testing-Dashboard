@@ -1,6 +1,6 @@
 (async function getMsisdnData() {
     try {
-      const response = await fetch('/msisdn-data');
+        const response = await fetch(`${window.location.origin}/msisdn-data`);
       const data = await response.json();
       let totalMsisdn = 0;
       let totalFreeVoice = 0;
@@ -18,7 +18,28 @@
         }
       });
   
+      (async function getSimCardData() {
+        try {
+            const response = await fetch(`${window.location.origin}/sim-data`);
 
+          const data = await response.json();
+          let totalAssignedPSim = 0;
+          let totalAssignedESim = 0;
+      
+          data.forEach((row) => {
+            if (row['Category'] === 'P-SIM' && row['Status'] === 'Assigned') {
+              totalAssignedPSim += row['Total Amount'];
+            } else if (row['Category'] === 'E-SIM' && row['Status'] === 'Assigned') {
+              totalAssignedESim += row['Total Amount'];
+            }
+          });
+      
+          const totalAssignedSimCards = totalAssignedPSim + totalAssignedESim;
+          document.querySelector('.card-text').textContent = totalAssignedSimCards.toLocaleString();
+        } catch (error) {
+          console.error('Error fetching SIM card data:', error);
+        }
+      })();
       
  
    // createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
