@@ -21,7 +21,8 @@
 
       
  
-      createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
+   // createFreeAssignedVoiceChart(totalFreeVoice, totalAssignedVoice);
+
   
       // Add animateValue() function calls here
       document.querySelector('.total-msisdn').textContent = totalMsisdn;
