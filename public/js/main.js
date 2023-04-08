@@ -85,7 +85,7 @@
       { label: 'Assigned Voice', value: totalAssignedVoice },
     ];
   
-    new Morris.Donut({
+    Morris.Donut({
       element: 'free-assigned-voice-chart',
       data: chartData,
       colors: ['#76DDFB', '#00A6FB'],
@@ -95,6 +95,7 @@
       },
     });
   }
+  
   
   
   function animateValue(id, start, end, duration) {
